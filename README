@@ -1,0 +1,64 @@
+= pms - Poor Man's Search
+
+== VERSION
+
+This documentation refers to pms version 0.0.1
+
+
+== DESCRIPTION
+
+Provides a simple searching facility for (nearly) arbitrary input. It allows
+searching by Strings (exact match) or Regexps (full control, but slower).
+Boolean operators AND, OR, and NOT are supported, as well as proximity
+operators NEAR (with configurable distance) and ADJACENT (taking order into
+account). You can chain operators and also group them into sub-queries.
+
+Inspiration came from a discussion on ruby-talk, starting with message
+ruby-talk:322014[http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/322014],
+but PMS has a more document-centric attitude (everything that <tt>input#each</tt>
+yields is considered a document of its own).
+
+Example:
+
+  require 'pms/ext'
+
+  text = <<EOT
+  Hello world, how are you today? I said "Hello"
+  to the other guy but he would not answer although
+  all the world could hear me.
+  EOT
+
+  search = text.search('hello').near('world', 3)
+
+  p search.results
+  #=> [0]
+
+  p search.results_with_positions
+  #=> {0=>[0, 8]}
+
+  p search.matches
+  #=> ["Hello world, how are you today? I said \"Hello\"\n"]
+
+You can find more examples in the <tt>spec/</tt> directory.
+
+
+== AUTHORS
+
+* Jens Wille <mailto:jens.wille@uni-koeln.de>
+
+
+== LICENSE AND COPYRIGHT
+
+Copyright (C) 2008 Jens Wille
+
+pms is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+pms is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+pms. If not, see <http://www.gnu.org/licenses/>.
