@@ -5,13 +5,15 @@ begin
 
   Hen.lay! {{
     :rubyforge => {
-      :project => %q{pms},
-      :package => %q{pms}
+      :project  => %q{pms},
+      :package  => %q{pms},
+      :rdoc_dir => nil
     },
 
     :gem => {
       :version      => PMS::VERSION,
       :summary      => %q{Poor Man's Search},
+      :homepage     => %q{http://pms.rubyforge.org/},
       :files        => FileList['lib/**/*.rb'].to_a,
       :extra_files  => FileList['[A-Z]*', 'spec/**/*.rb', 'test_data/**/*'].to_a,
       :dependencies => %w[]

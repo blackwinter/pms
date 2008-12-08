@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ["COPYING", "ChangeLog", "README"]
   s.files = ["lib/pms.rb", "lib/pms/proxy.rb", "lib/pms/ext.rb", "lib/pms/version.rb", "lib/pms/index.rb", "Rakefile", "COPYING", "ChangeLog", "README", "spec/spec_helper.rb", "spec/pms/proxy_spec.rb", "spec/pms/index_spec.rb", "spec/pms/ext_spec.rb", "spec/pms_spec.rb", "test_data/fox.txt"]
   s.has_rdoc = true
-  s.homepage = %q{http://pms.rubyforge.org/pms}
+  s.homepage = %q{http://pms.rubyforge.org/}
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "pms Application documentation", "--main", "README", "--charset", "UTF-8", "--all"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{pms}
