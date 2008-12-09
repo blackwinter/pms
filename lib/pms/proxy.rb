@@ -71,18 +71,26 @@ class PMS
     end
 
     def apply_operator(op, doc_nums)
+      results = self.results
+
       case op = op.to_s.downcase
         when 'and'
-          @results &= doc_nums
+          results &= doc_nums
         when 'or'
-          @results |= doc_nums
+          results |= doc_nums
         when 'not'
-          @results -= doc_nums
+          results -= doc_nums
         else
           raise ArgumentError, "invalid operator '#{op}'"
       end
 
-      self  # allow chaining!
+      clone_with_results(results)  # allow chaining!
+    end
+
+    def clone_with_results(results)
+      clone = self.clone
+      clone.instance_variable_set(:@results, results)
+      clone
     end
 
   end

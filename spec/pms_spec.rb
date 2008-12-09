@@ -62,4 +62,24 @@ describe PMS do
     @pms.search('fox').adjacent('goose', 10).results.sort.should == [6]
   end
 
+  it 'should search case-insensitively' do
+    @pms.search('said').results.sort.should == [1, 4]
+    @pms.search('Said').results.sort.should == [1, 4]
+  end
+
+  it 'should not modify intermediate results' do
+    search1  = @pms.search('fox')
+    results1 = search1.results.sort
+    results1.should == [0, 3, 4, 6]
+
+    search2  = search1.or('goose')
+    results2 = search2.results.sort
+    results2.should == [0, 2, 3, 4, 6]
+
+    search2.and('GOAWAYFLAG').results.sort.should == []
+
+    search2.results.sort.should == results2
+    search1.results.sort.should == results1
+  end
+
 end
