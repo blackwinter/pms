@@ -44,9 +44,10 @@ You can find more examples in the <tt>spec/</tt> directory.
 
 == LINKS
 
-* <http://pms.rubyforge.org/>
-* <http://rubyforge.org/projects/pms>
-* <http://github.com/blackwinter/pms>
+<b></b>
+Documentation::     <http://pms.rubyforge.org/>
+Source code::       <http://github.com/blackwinter/pms>
+Rubyforge project:: <http://rubyforge.org/projects/pms>
 
 
 == AUTHORS
