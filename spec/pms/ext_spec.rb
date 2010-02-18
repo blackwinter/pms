@@ -28,6 +28,22 @@ shared_examples_for 'any Searchable' do
 
 end
 
+shared_examples_for 'most Searchables' do
+
+  it 'should allow boolean combination with & (AND)' do
+    (@searchable/'fox' & 'goose').results.sort.should == [3, 6]
+  end
+
+  it 'should allow boolean combination with | (OR)' do
+    (@searchable/'fox' | 'goose').results.sort.should == [0, 2, 3, 4, 6]
+  end
+
+  it 'should allow boolean combination with - (NOT)' do
+    (@searchable/'fox' - 'goose').results.sort.should == [0, 4]
+  end
+
+end
+
 describe String, ' when extended by pms' do
 
   before :each do
@@ -35,6 +51,7 @@ describe String, ' when extended by pms' do
   end
 
   it_should_behave_like 'any Searchable'
+  it_should_behave_like 'most Searchables'
 
 end
 
@@ -45,6 +62,7 @@ describe IO, ' when extended by pms' do
   end
 
   it_should_behave_like 'any Searchable'
+  it_should_behave_like 'most Searchables'
 
 end
 
@@ -55,6 +73,7 @@ describe Array, ' when extended by pms' do
   end
 
   it_should_behave_like 'any Searchable'
+  it_should_behave_like 'most Searchables'
 
 end
 

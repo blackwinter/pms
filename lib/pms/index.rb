@@ -3,7 +3,7 @@
 #                                                                             #
 # A component of pms, Poor Man's Search.                                      #
 #                                                                             #
-# Copyright (C) 2008 Jens Wille                                               #
+# Copyright (C) 2008-2010 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@uni-koeln.de>                                    #
@@ -68,7 +68,7 @@ class PMS
 
     def documents(doc_nums = default = Object.new)
       @documents ||= get_documents
-      default ? @documents : doc_nums.map { |doc_num| @documents[doc_num] }
+      default ? @documents : @documents.values_at(*doc_nums)
     end
 
     alias_method :matches, :documents

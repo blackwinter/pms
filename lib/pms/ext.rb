@@ -3,7 +3,7 @@
 #                                                                             #
 # A component of pms, Poor Man's Search.                                      #
 #                                                                             #
-# Copyright (C) 2008 Jens Wille                                               #
+# Copyright (C) 2008-2010 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@uni-koeln.de>                                    #
@@ -34,16 +34,18 @@ module PMS::Ext
     PMS.new(self).search(*args)
   end
 
+  alias_method :/, :search
+
   RECEIVERS.each { |klass|
     klass.send(:include, self)
   }
 
 end
 
-class File
+class << File
 
-  def self.search(file, *args)
-    File.open(file.respond_to?(:path) ? file.path : file) { |f| f.search(*args) }
+  def search(file, *args)
+    open(file.respond_to?(:path) ? file.path : file) { |f| f.search(*args) }
   end
 
 end

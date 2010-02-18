@@ -3,7 +3,7 @@
 #                                                                             #
 # pms - Poor Man's Search.                                                    #
 #                                                                             #
-# Copyright (C) 2008 Jens Wille                                               #
+# Copyright (C) 2008-2010 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@uni-koeln.de>                                    #
@@ -39,6 +39,8 @@ class PMS
   def search(token = nil)
     token ? TokenProxy.new(self, token) : Proxy.new(self).and { |*a| yield(*a) }
   end
+
+  alias_method :/, :search
 
   def results
     @index.entries

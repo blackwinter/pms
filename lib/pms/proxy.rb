@@ -3,7 +3,7 @@
 #                                                                             #
 # A component of pms, Poor Man's Search.                                      #
 #                                                                             #
-# Copyright (C) 2008 Jens Wille                                               #
+# Copyright (C) 2008-2010 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@uni-koeln.de>                                    #
@@ -41,15 +41,21 @@ class PMS
               apply_operator_with_block('and') { |*a| yield(*a) }
     end
 
+    alias_method :&, :and
+
     def or(token = nil)
       token ? apply_operator_with_token('or', token) :
               apply_operator_with_block('or') { |*a| yield(*a) }
     end
 
+    alias_method :|, :or
+
     def not(token = nil)
       token ? apply_operator_with_token('not', token) :
               apply_operator_with_block('not') { |*a| yield(*a) }
     end
+
+    alias_method :-, :not
 
     def matches
       index.matches(results)
@@ -132,9 +138,14 @@ class PMS
       apply_operator('and', doc_nums)
     end
 
+    alias_method :%, :near
+
     def adjacent(token, distance = 1)
       near(token, distance, true)
     end
+
+    alias_method :adj, :adjacent
+    alias_method :^, :adjacent
 
   end
 

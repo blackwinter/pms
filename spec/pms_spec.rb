@@ -20,12 +20,24 @@ describe PMS do
     @pms.search('fox').and('goose').results.sort.should == [3, 6]
   end
 
+  it 'should support boolean operator & (AND)' do
+    (@pms/'fox' & 'goose').results.sort.should == [3, 6]
+  end
+
   it 'should support boolean operator OR' do
     @pms.search('fox').or('goose').results.sort.should == [0, 2, 3, 4, 6]
   end
 
+  it 'should support boolean operator | (OR)' do
+    (@pms/'fox' | 'goose').results.sort.should == [0, 2, 3, 4, 6]
+  end
+
   it 'should support boolean operator NOT' do
     @pms.search('fox').not('goose').results.sort.should == [0, 4]
+  end
+
+  it 'should support boolean operator - (NOT)' do
+    (@pms/'fox' - 'goose').results.sort.should == [0, 4]
   end
 
   it 'should allow chaining of operators' do
@@ -58,8 +70,20 @@ describe PMS do
     @pms.search('fox').near('goose', 10).results.sort.should == [3, 6]
   end
 
+  it 'should support proximity operator % (NEAR)' do
+    (@pms/'night' % 'chilly').results.sort.should == [0]
+  end
+
   it 'should support proximity operator ADJACENT' do
     @pms.search('fox').adjacent('goose', 10).results.sort.should == [6]
+  end
+
+  it 'should support proximity operator ADJ (ADJACENT)' do
+    @pms.search('fox').adj('goose', 10).results.sort.should == [6]
+  end
+
+  it 'should support proximity operator ^ (ADJACENT)' do
+    (@pms/'chilly' ^ 'night').results.sort.should == [0]
   end
 
   it 'should search case-insensitively' do
