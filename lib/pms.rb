@@ -24,6 +24,7 @@
 ###############################################################################
 #++
 
+require 'pms/version'
 require 'pms/index'
 require 'pms/proxy'
 
@@ -36,8 +37,8 @@ class PMS
     @index = Index.new(input)
   end
 
-  def search(token = nil)
-    token ? TokenProxy.new(self, token) : Proxy.new(self).and { |*a| yield(*a) }
+  def search(token = nil, &block)
+    token ? TokenProxy.new(self, token) : Proxy.new(self).and(&block)
   end
 
   alias_method :/, :search

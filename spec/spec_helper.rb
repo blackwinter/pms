@@ -1,3 +1,5 @@
+require 'rubygems'
+
 unless Object.const_defined?(:BASE)
   BASE = File.join(File.dirname(__FILE__), '..')
 

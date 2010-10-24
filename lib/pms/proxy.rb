@@ -36,30 +36,20 @@ class PMS
       @results = pms.results
     end
 
-    def and(token = nil)
-      token ? apply_operator_with_token('and', token) :
-              apply_operator_with_block('and') { |*a| yield(*a) }
-    end
-
-    alias_method :&, :and
-
-    def or(token = nil)
-      token ? apply_operator_with_token('or', token) :
-              apply_operator_with_block('or') { |*a| yield(*a) }
-    end
-
-    alias_method :|, :or
-
-    def not(token = nil)
-      token ? apply_operator_with_token('not', token) :
-              apply_operator_with_block('not') { |*a| yield(*a) }
-    end
-
-    alias_method :-, :not
-
     def matches
       index.matches(results)
     end
+
+    %w[and or not].each { |op| class_eval %Q{
+      def #{op}(token = nil, &block)
+        token ? apply_operator_with_token(#{op.inspect}, token) :
+                apply_operator_with_block(#{op.inspect}, &block)
+      end
+    } }
+
+    alias_method :&, :and
+    alias_method :|, :or
+    alias_method :-, :not
 
     private
 
@@ -69,10 +59,8 @@ class PMS
 
     def apply_operator_with_block(op)
       case sub = yield(pms)
-        when Proxy
-          apply_operator(op, sub.results)
-        else
-          raise "sub-query must return a PMS::Proxy object (got #{sub.class})"
+        when Proxy then apply_operator(op, sub.results)
+        else raise "sub-query must return a #{Proxy} object (got #{sub.class})"
       end
     end
 
@@ -80,14 +68,10 @@ class PMS
       results = self.results
 
       case op = op.to_s.downcase
-        when 'and'
-          results &= doc_nums
-        when 'or'
-          results |= doc_nums
-        when 'not'
-          results -= doc_nums
-        else
-          raise ArgumentError, "invalid operator '#{op}'"
+        when 'and' then results &= doc_nums
+        when 'or'  then results |= doc_nums
+        when 'not' then results -= doc_nums
+        else raise ArgumentError, "invalid operator `#{op}'"
       end
 
       clone_with_results(results)  # allow chaining!

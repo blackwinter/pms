@@ -28,7 +28,7 @@ class PMS
 
   class Index
 
-    TOKEN_RE = %r{\w+}o
+    TOKEN_RE = %r{\w+}
 
     attr_reader :input, :index, :entries
 
@@ -36,8 +36,6 @@ class PMS
       raise ArgumentError, "input must implement #each" unless input.respond_to?(:each)
 
       @input = input
-      @index = Hash.new { |h, k| h[k] = Hash.new { |i, j| i[j] = [] } }
-
       build_index
     end
 
@@ -82,8 +80,8 @@ class PMS
     private
 
     def build_index
-      @documents, @entries = nil, []
-      doc_num = -1
+      @documents, @entries, doc_num = nil, [], -1
+      index = Hash.new { |h, k| h[k] = Hash.new { |i, j| i[j] = [] } }
 
       input.each { |doc|
         @entries << doc_num += 1
@@ -93,6 +91,8 @@ class PMS
           index[mangle_token(token)][doc_num] << pos += 1
         }
       }
+
+      @index = index
     end
 
     def get_documents

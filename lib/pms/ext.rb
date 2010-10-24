@@ -28,15 +28,13 @@ require 'pms'
 
 module PMS::Ext
 
-  RECEIVERS = [String, IO, Array].freeze
-
-  def search(*args)
-    PMS.new(self).search(*args)
+  def search(*args, &block)
+    PMS.new(self).search(*args, &block)
   end
 
   alias_method :/, :search
 
-  RECEIVERS.each { |klass|
+  [String, IO, Array].each { |klass|
     klass.send(:include, self)
   }
 
@@ -44,8 +42,9 @@ end
 
 class << File
 
-  def search(file, *args)
-    open(file.respond_to?(:path) ? file.path : file) { |f| f.search(*args) }
+  def search(file, *args, &block)
+    file = file.path if file.respond_to?(:path)
+    open(file) { |f| f.search(*args, &block) }
   end
 
 end
