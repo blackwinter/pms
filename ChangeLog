@@ -1,5 +1,17 @@
 = Revision history for pms
 
+== 0.0.4 [2010-10-24]
+
+* Some code cleanup.
+
+== 0.0.3 [2010-02-18]
+
+* Added some handy operator aliases.
+
+== 0.0.2 [2008-12-09]
+
+* Fixed handling of Proxy internals.
+
 == 0.0.1 [2008-12-06]
 
 * Birthday :-)
