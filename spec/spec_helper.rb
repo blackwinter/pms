@@ -6,5 +6,5 @@ unless Object.const_defined?(:BASE)
   $: << File.join(BASE, 'lib')
   require 'pms'
 
-  FOX = File.join(BASE, 'test_data', 'fox.txt')
+  FOX = File.join(BASE, 'spec', 'fox.txt')
 end
