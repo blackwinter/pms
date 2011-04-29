@@ -1,1 +1,223 @@
-My GitHub Page
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>pms Application documentation (v0.0.5)</title>
+
+  <link type="text/css" media="screen" href="rdoc.css" rel="stylesheet" />
+
+  <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body class="indexpage">
+
+  
+  <h1>pms Application documentation (v0.0.5)</h1>
+
+  
+  <div id="main">
+    
+
+<h2>VERSION</h2>
+
+<p>This documentation refers to pms version 0.0.5</p>
+
+<h2>DESCRIPTION</h2>
+
+<p>Provides a simple searching facility for (nearly) arbitrary input. It
+allows searching by Strings (exact match) or Regexps (full control, but
+slower). Boolean operators AND, OR, and NOT are supported, as well as
+proximity operators NEAR (with configurable distance) and ADJACENT (taking
+order into account). You can chain operators and also group them into
+sub-queries.</p>
+
+<p>Inspiration came from a discussion on ruby-talk, starting with message <a
+href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/322014">ruby-talk:322014</a>,
+but <a href="PMS.html">PMS</a> has a more document-centric attitude
+(everything that <tt>input#each</tt> yields is considered a document of its
+own).</p>
+
+<p>Example:</p>
+
+<pre>require 'pms/ext'
+
+text = &lt;&lt;EOT
+Hello world, how are you today? I said &quot;Hello&quot;
+to the other guy but he would not answer although
+all the world could hear me.
+EOT
+
+search = text.search('hello').near('world', 3)
+
+p search.results
+#=&gt; [0]
+
+p search.results_with_positions
+#=&gt; {0=&gt;[0, 8]}
+
+p search.matches
+#=&gt; [&quot;Hello world, how are you today? I said \&quot;Hello\&quot;\n&quot;]</pre>
+
+<p>You can find more examples in the <tt>spec/</tt> directory.</p>
+
+<h2>LINKS</h2>
+
+<p></p>
+<table class="rdoc-list"><tr><td class="rdoc-term"><p>Documentation</p></td>
+<td>
+<p><a href="http://pms.rubyforge.org/">pms.rubyforge.org/</a></p>
+</td></tr><tr><td class="rdoc-term"><p>Source code</p></td>
+<td>
+<p><a href="http://github.com/blackwinter/pms">github.com/blackwinter/pms</a></p>
+</td></tr><tr><td class="rdoc-term"><p>RubyForge project</p></td>
+<td>
+<p><a href="http://rubyforge.org/projects/pms">rubyforge.org/projects/pms</a></p>
+</td></tr></table>
+
+<h2>AUTHORS</h2>
+<ul><li>
+<p>Jens Wille &lt;<a
+href="mailto:jens.wille@uni-koeln.de">jens.wille@uni-koeln.de</a>&gt;</p>
+</li></ul>
+
+<h2>LICENSE AND COPYRIGHT</h2>
+
+<p>Copyright (C) 2008-2011 Jens Wille</p>
+
+<p>pms is free software: you can redistribute it and/or modify it under the
+terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version.</p>
+
+<p>pms is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for
+more details.</p>
+
+<p>You should have received a copy of the GNU Affero General Public License
+along with pms. If not, see &lt;<a
+href="http://www.gnu.org/licenses/">www.gnu.org/licenses/</a>&gt;.</p>
+
+  </div>
+  
+
+  
+  
+  <h2>Files</h2>
+  <ul>
+    
+      <li class="file"><a href="COPYING.html">COPYING</a></li>
+    
+      <li class="file"><a href="ChangeLog.html">ChangeLog</a></li>
+    
+      <li class="file"><a href="README.html">README</a></li>
+    
+  </ul>
+  
+
+  <h2 id="classes">Classes/Modules</h2>
+  <ul>
+    
+    <li class="class"><a href="PMS.html">PMS</a></li>
+    
+    <li class="module"><a href="PMS/Ext.html">PMS::Ext</a></li>
+    
+    <li class="class"><a href="PMS/Index.html">PMS::Index</a></li>
+    
+    <li class="class"><a href="PMS/Proxy.html">PMS::Proxy</a></li>
+    
+    <li class="class"><a href="PMS/TokenProxy.html">PMS::TokenProxy</a></li>
+    
+    <li class="module"><a href="PMS/Version.html">PMS::Version</a></li>
+    
+    <li class="module"><a href="File.html">File</a></li>
+    
+  </ul>
+
+  <h2 id="methods">Methods</h2>
+  <ul>
+    
+      <li><a href="PMS/Proxy.html#method-c-new">::new &mdash; PMS::Proxy</a></li>
+    
+      <li><a href="PMS.html#method-c-new">::new &mdash; PMS</a></li>
+    
+      <li><a href="PMS/TokenProxy.html#method-c-new">::new &mdash; PMS::TokenProxy</a></li>
+    
+      <li><a href="PMS/Index.html#method-c-new">::new &mdash; PMS::Index</a></li>
+    
+      <li><a href="File.html#method-c-search">::search &mdash; File</a></li>
+    
+      <li><a href="PMS/Version.html#method-c-to_a">::to_a &mdash; PMS::Version</a></li>
+    
+      <li><a href="PMS/Version.html#method-c-to_s">::to_s &mdash; PMS::Version</a></li>
+    
+      <li><a href="PMS/TokenProxy.html#method-i-25">#% &mdash; PMS::TokenProxy</a></li>
+    
+      <li><a href="PMS.html#method-i-2F">#/ &mdash; PMS</a></li>
+    
+      <li><a href="PMS/Ext.html#method-i-2F">#/ &mdash; PMS::Ext</a></li>
+    
+      <li><a href="PMS/Index.html#method-i-5B-5D">#[] &mdash; PMS::Index</a></li>
+    
+      <li><a href="PMS/TokenProxy.html#method-i-5E">#^ &mdash; PMS::TokenProxy</a></li>
+    
+      <li><a href="PMS/TokenProxy.html#method-i-adj">#adj &mdash; PMS::TokenProxy</a></li>
+    
+      <li><a href="PMS/TokenProxy.html#method-i-adjacent">#adjacent &mdash; PMS::TokenProxy</a></li>
+    
+      <li><a href="PMS/Proxy.html#method-i-apply_operator">#apply_operator &mdash; PMS::Proxy</a></li>
+    
+      <li><a href="PMS/Proxy.html#method-i-apply_operator_with_block">#apply_operator_with_block &mdash; PMS::Proxy</a></li>
+    
+      <li><a href="PMS/Proxy.html#method-i-apply_operator_with_token">#apply_operator_with_token &mdash; PMS::Proxy</a></li>
+    
+      <li><a href="PMS/Index.html#method-i-build_index">#build_index &mdash; PMS::Index</a></li>
+    
+      <li><a href="PMS/Proxy.html#method-i-clone_with_results">#clone_with_results &mdash; PMS::Proxy</a></li>
+    
+      <li><a href="PMS/Index.html#method-i-doc">#doc &mdash; PMS::Index</a></li>
+    
+      <li><a href="PMS/Index.html#method-i-doc_nums">#doc_nums &mdash; PMS::Index</a></li>
+    
+      <li><a href="PMS/Index.html#method-i-doc_nums_with_positions">#doc_nums_with_positions &mdash; PMS::Index</a></li>
+    
+      <li><a href="PMS/Index.html#method-i-documents">#documents &mdash; PMS::Index</a></li>
+    
+      <li><a href="PMS/Index.html#method-i-get_documents">#get_documents &mdash; PMS::Index</a></li>
+    
+      <li><a href="PMS/Index.html#method-i-mangle_token">#mangle_token &mdash; PMS::Index</a></li>
+    
+      <li><a href="PMS/Proxy.html#method-i-matches">#matches &mdash; PMS::Proxy</a></li>
+    
+      <li><a href="PMS/Index.html#method-i-matches">#matches &mdash; PMS::Index</a></li>
+    
+      <li><a href="PMS.html#method-i-matches">#matches &mdash; PMS</a></li>
+    
+      <li><a href="PMS/TokenProxy.html#method-i-near">#near &mdash; PMS::TokenProxy</a></li>
+    
+      <li><a href="PMS.html#method-i-results">#results &mdash; PMS</a></li>
+    
+      <li><a href="PMS/Index.html#method-i-results">#results &mdash; PMS::Index</a></li>
+    
+      <li><a href="PMS/Index.html#method-i-results_with_positions">#results_with_positions &mdash; PMS::Index</a></li>
+    
+      <li><a href="PMS.html#method-i-search">#search &mdash; PMS</a></li>
+    
+      <li><a href="PMS/Ext.html#method-i-search">#search &mdash; PMS::Ext</a></li>
+    
+  </ul>
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+</body>
+</html>
