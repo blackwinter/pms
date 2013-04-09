@@ -5,11 +5,13 @@ begin
 
   Hen.lay! {{
     :gem => {
-      :name    => %q{pms},
-      :version => PMS::VERSION,
-      :summary => %q{Poor Man's Search},
-      :author  => %q{Jens Wille},
-      :email   => %q{jens.wille@gmail.com}
+      :name         => %q{pms},
+      :version      => PMS::VERSION,
+      :summary      => %q{Poor Man's Search},
+      :author       => %q{Jens Wille},
+      :email        => %q{jens.wille@gmail.com},
+      :homepage     => :blackwinter,
+      :dependencies => %w[]
     }
   }}
 rescue LoadError => err
