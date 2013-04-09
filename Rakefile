@@ -4,15 +4,12 @@ begin
   require 'hen'
 
   Hen.lay! {{
-    :rubyforge => {
-      :project => %q{pms}
-    },
-
     :gem => {
+      :name    => %q{pms},
       :version => PMS::VERSION,
       :summary => %q{Poor Man's Search},
       :author  => %q{Jens Wille},
-      :email   => %q{jens.wille@uni-koeln.de}
+      :email   => %q{jens.wille@gmail.com}
     }
   }}
 rescue LoadError => err

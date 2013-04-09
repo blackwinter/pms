@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors = ["Jens Wille"]
   s.date = %q{2011-04-29}
   s.description = %q{Poor Man's Search}
-  s.email = %q{jens.wille@uni-koeln.de}
+  s.email = %q{jens.wille@gmail.com}
   s.extra_rdoc_files = ["README", "COPYING", "ChangeLog"]
   s.files = ["lib/pms.rb", "lib/pms/index.rb", "lib/pms/proxy.rb", "lib/pms/ext.rb", "lib/pms/version.rb", "README", "ChangeLog", "Rakefile", "COPYING", "spec/pms/index_spec.rb", "spec/pms/ext_spec.rb", "spec/pms/proxy_spec.rb", "spec/spec.opts", "spec/fox.txt", "spec/spec_helper.rb", "spec/pms_spec.rb"]
   s.homepage = %q{http://pms.rubyforge.org/}
