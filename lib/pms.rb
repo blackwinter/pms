@@ -32,9 +32,9 @@ class PMS
 
   attr_reader :input, :index
 
-  def initialize(input)
+  def initialize(input, options = {})
     @input = input
-    @index = Index.new(input)
+    @index = Index.new(input, options)
   end
 
   def search(token = nil, &block)

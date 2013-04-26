@@ -32,13 +32,15 @@ class PMS
 
     TOKEN_RE = %r{\w+}
 
+    DEFAULT_LSI = 0.05
+
     attr_reader :input, :index, :entries
 
-    def initialize(input)
+    def initialize(input, options = {})
       @input = input.respond_to?(:each) ? input : input.is_a?(String) ?
         input.each_line : raise(ArgumentError, 'input must implement #each')
 
-      build_index
+      build_index(options)
     end
 
     def doc_nums_with_positions(token)
@@ -55,7 +57,7 @@ class PMS
           res
         else
           raise TypeError, "expected String or Regexp, got #{token.class}"
-      end
+      end.each { |_, positions| positions.compact! }
     end
 
     alias_method :results_with_positions, :doc_nums_with_positions
@@ -81,7 +83,14 @@ class PMS
 
     private
 
-    def build_index
+    def build_index(options)
+      if lsi = options[:lsi]
+        require 'nuggets/lsi'
+
+        lsi = DEFAULT_LSI if lsi == true
+        map = Hash.new { |h, k| h[k] = [] }
+      end
+
       @documents, @entries, doc_num = nil, [], -1
       index = Hash.new { |h, k| h[k] = Hash.new { |i, j| i[j] = [] } }
 
@@ -90,9 +99,14 @@ class PMS
         pos = -1
 
         doc.scan(TOKEN_RE) { |token|
-          index[mangle_token(token)][doc_num] << pos += 1
+          index[term = mangle_token(token)][doc_num] << pos += 1
+          map[doc_num] << term if map
         }
       }
+
+      Nuggets::LSI.each_norm(map, :min => lsi, :new => true) { |d, k, _|
+        index[mangle_token(k)][d.key] << nil
+      } if lsi
 
       @index = index
     end

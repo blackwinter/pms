@@ -107,3 +107,22 @@ describe PMS do
   end
 
 end
+
+describe PMS, 'with LSI' do
+
+  before :each do
+    @pms1 = PMS.new(File.read(FOX))
+    @pms2 = PMS.new(File.read(FOX), :lsi => true)
+  end
+
+  it 'should find more ducks' do
+    @pms1.search('ducks').results.should == [1]
+    @pms2.search('ducks').results.should == [1, 4, 5]
+  end
+
+  it 'should not report positions for LSI terms' do
+    @pms1.search('ducks').results_with_positions.values.flatten.should == [12]
+    @pms2.search('ducks').results_with_positions.values.flatten.should == [12]
+  end
+
+end

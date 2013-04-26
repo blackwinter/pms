@@ -11,7 +11,7 @@ begin
       :author       => %q{Jens Wille},
       :email        => %q{jens.wille@gmail.com},
       :homepage     => :blackwinter,
-      :dependencies => %w[unicode]
+      :dependencies => %w[unicode] << ['ruby-nuggets', '>= 0.9.4']
     }
   }}
 rescue LoadError => err
