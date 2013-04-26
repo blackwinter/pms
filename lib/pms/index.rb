@@ -24,6 +24,8 @@
 ###############################################################################
 #++
 
+require 'unicode'
+
 class PMS
 
   class Index
@@ -33,9 +35,9 @@ class PMS
     attr_reader :input, :index, :entries
 
     def initialize(input)
-      raise ArgumentError, "input must implement #each" unless input.respond_to?(:each)
+      @input = input.respond_to?(:each) ? input : input.is_a?(String) ?
+        input.each_line : raise(ArgumentError, 'input must implement #each')
 
-      @input = input
       build_index
     end
 
@@ -64,7 +66,7 @@ class PMS
 
     alias_method :results, :doc_nums
 
-    def documents(doc_nums = default = Object.new)
+    def documents(doc_nums = default = true)
       @documents ||= get_documents
       default ? @documents : @documents.values_at(*doc_nums)
     end
@@ -104,7 +106,7 @@ class PMS
     end
 
     def mangle_token(token)
-      token.downcase
+      Unicode.downcase(token)
     end
 
   end

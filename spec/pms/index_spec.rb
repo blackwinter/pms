@@ -16,7 +16,7 @@ describe PMS::Index do
 
 end
 
-describe PMS::Index, ' with exhaustable input' do
+describe PMS::Index, 'with exhaustable input' do
 
   before :each do
     # already seeks to EOF in #build_index
@@ -25,6 +25,14 @@ describe PMS::Index, ' with exhaustable input' do
 
   it 'should return the documents anyway' do
     @index.documents.size.should == 7
+  end
+
+end
+
+describe PMS::Index, 'with invalid input' do
+
+  it 'should raise an error' do
+    lambda { PMS::Index.new(123) }.should raise_error(ArgumentError)
   end
 
 end

@@ -44,7 +44,7 @@ shared_examples_for 'most Searchables' do
 
 end
 
-describe String, ' when extended by pms' do
+describe String, 'when extended by pms' do
 
   before :each do
     @searchable = File.read(FOX)
@@ -55,7 +55,7 @@ describe String, ' when extended by pms' do
 
 end
 
-describe IO, ' when extended by pms' do
+describe IO, 'when extended by pms' do
 
   before :each do
     @searchable = File.open(FOX)
@@ -66,7 +66,7 @@ describe IO, ' when extended by pms' do
 
 end
 
-describe Array, ' when extended by pms' do
+describe Array, 'when extended by pms' do
 
   before :each do
     @searchable = File.readlines(FOX)
@@ -77,7 +77,7 @@ describe Array, ' when extended by pms' do
 
 end
 
-describe File, ' when extended by pms' do
+describe File, 'when extended by pms' do
 
   before :each do
     @searchable = File

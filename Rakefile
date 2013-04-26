@@ -11,7 +11,7 @@ begin
       :author       => %q{Jens Wille},
       :email        => %q{jens.wille@gmail.com},
       :homepage     => :blackwinter,
-      :dependencies => %w[]
+      :dependencies => %w[unicode]
     }
   }}
 rescue LoadError => err
