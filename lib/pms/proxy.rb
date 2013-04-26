@@ -131,6 +131,15 @@ class PMS
     alias_method :adj, :adjacent
     alias_method :^, :adjacent
 
+    private
+
+    def clone_with_results(results)
+      clone = super
+      clone.instance_variable_set(:@results_with_positions,
+        @results_with_positions.dup.delete_if { |k, _| !results.include?(k) })
+      clone
+    end
+
   end
 
 end
