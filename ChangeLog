@@ -2,6 +2,15 @@
 
 = Revision history for pms
 
+== 0.0.6 [2013-12-19]
+
+* Added LSI support.
+* Housekeeping and fixes.
+
+== 0.0.5 [2011-04-29]
+
+* Housekeeping.
+
 == 0.0.4 [2010-10-24]
 
 * Some code cleanup.
