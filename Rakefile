@@ -10,7 +10,7 @@ begin
       :summary      => %q{Poor Man's Search},
       :author       => %q{Jens Wille},
       :email        => %q{jens.wille@gmail.com},
-      :license      => %q{AGPL},
+      :license      => %q{AGPL-3.0},
       :homepage     => :blackwinter,
       :dependencies => %w[unicode] << ['ruby-nuggets', '>= 0.9.4']
     }
