@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class PMS::TokenProxy - pms Application documentation (v0.0.5)</title>
+<title>class PMS::TokenProxy - pms Application documentation (v0.0.6)</title>
 
 <link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
 
@@ -82,6 +82,8 @@
     <li ><a href="#method-i-adj">#adj</a>
     
     <li ><a href="#method-i-adjacent">#adjacent</a>
+    
+    <li class="calls-super" ><a href="#method-i-clone_with_results">#clone_with_results</a>
     
     <li ><a href="#method-i-near">#near</a>
     
@@ -416,6 +418,53 @@
 
     
     </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
+
+    
+      <div id="method-i-clone_with_results" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clone_with_results</span><span
+            class="method-args">(results)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="Proxy.html#method-i-clone_with_results">PMS::Proxy#clone_with_results</a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="clone_with_results-source">
+            <pre><span class="ruby-comment"># File lib/pms/proxy.rb, line 136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clone_with_results</span>(<span class="ruby-identifier">results</span>)
+  <span class="ruby-identifier">clone</span> = <span class="ruby-keyword">super</span>
+  <span class="ruby-identifier">clone</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@results_with_positions</span>,
+    <span class="ruby-ivar">@results_with_positions</span>.<span class="ruby-identifier">dup</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">_</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">results</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">k</span>) })
+  <span class="ruby-identifier">clone</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- clone_with_results-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- clone_with_results-method -->
+
+    
+    </section><!-- private-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

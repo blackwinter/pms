@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class PMS::Index - pms Application documentation (v0.0.5)</title>
+<title>class PMS::Index - pms Application documentation (v0.0.6)</title>
 
 <link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
 
@@ -163,6 +163,11 @@
       <h3 class="section-header">Constants</h3>
       <dl>
       
+        <dt id="DEFAULT_LSI">DEFAULT_LSI
+        
+        <dd class="description">
+        
+      
         <dt id="TOKEN_RE">TOKEN_RE
         
         <dd class="description">
@@ -230,7 +235,7 @@
         
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(input)</span>
+            class="method-args">(input, options = {})</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -245,12 +250,12 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 35</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">input</span>)
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;input must implement #each&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">input</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:each</span>)
+            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-ivar">@input</span> = <span class="ruby-identifier">input</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:each</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">input</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">input</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>) <span class="ruby-operator">?</span>
+    <span class="ruby-identifier">input</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">raise</span>(<span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&#39;input must implement #each&#39;</span>)
 
-  <span class="ruby-ivar">@input</span> = <span class="ruby-identifier">input</span>
-  <span class="ruby-identifier">build_index</span>
+  <span class="ruby-identifier">build_index</span>(<span class="ruby-identifier">options</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -315,7 +320,7 @@
 
           
           <div class="method-source-code" id="doc-source">
-            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 74</span>
+            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 78</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">doc</span>(<span class="ruby-identifier">doc_num</span>)
   <span class="ruby-identifier">documents</span>([<span class="ruby-identifier">doc_num</span>]).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
@@ -352,7 +357,7 @@
 
           
           <div class="method-source-code" id="doc_nums-source">
-            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 61</span>
+            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">doc_nums</span>(<span class="ruby-identifier">token</span>)
   <span class="ruby-identifier">doc_nums_with_positions</span>(<span class="ruby-identifier">token</span>).<span class="ruby-identifier">keys</span>
 <span class="ruby-keyword">end</span></pre>
@@ -389,7 +394,7 @@
 
           
           <div class="method-source-code" id="doc_nums_with_positions-source">
-            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 42</span>
+            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">doc_nums_with_positions</span>(<span class="ruby-identifier">token</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">token</span>
     <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>
@@ -404,7 +409,7 @@
       <span class="ruby-identifier">res</span>
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;expected String or Regexp, got #{token.class}&quot;</span>
-  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">positions</span><span class="ruby-operator">|</span> <span class="ruby-identifier">positions</span>.<span class="ruby-identifier">compact!</span> }
 <span class="ruby-keyword">end</span></pre>
           </div><!-- doc_nums_with_positions-source -->
           
@@ -424,7 +429,7 @@
         
         <div class="method-heading">
           <span class="method-name">documents</span><span
-            class="method-args">(doc_nums = default = Object.new)</span>
+            class="method-args">(doc_nums = default = true)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -439,8 +444,8 @@
 
           
           <div class="method-source-code" id="documents-source">
-            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 67</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">documents</span>(<span class="ruby-identifier">doc_nums</span> = <span class="ruby-identifier">default</span> = <span class="ruby-constant">Object</span>.<span class="ruby-identifier">new</span>)
+            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">documents</span>(<span class="ruby-identifier">doc_nums</span> = <span class="ruby-identifier">default</span> = <span class="ruby-keyword">true</span>)
   <span class="ruby-ivar">@documents</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">get_documents</span>
   <span class="ruby-identifier">default</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@documents</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@documents</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">doc_nums</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -462,7 +467,7 @@
         
         <div class="method-heading">
           <span class="method-name">matches</span><span
-            class="method-args">(doc_nums = default = Object.new)</span>
+            class="method-args">(doc_nums = default = true)</span>
           
         </div>
         
@@ -552,7 +557,7 @@
         
         <div class="method-heading">
           <span class="method-name">build_index</span><span
-            class="method-args">()</span>
+            class="method-args">(options)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -567,8 +572,15 @@
 
           
           <div class="method-source-code" id="build_index-source">
-            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 82</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_index</span>
+            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_index</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">lsi</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:lsi</span>]
+    <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;nuggets/lsi&#39;</span>
+
+    <span class="ruby-identifier">lsi</span> = <span class="ruby-constant">DEFAULT_LSI</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">lsi</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">map</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = [] }
+  <span class="ruby-keyword">end</span>
+
   <span class="ruby-ivar">@documents</span>, <span class="ruby-ivar">@entries</span>, <span class="ruby-identifier">doc_num</span> = <span class="ruby-keyword">nil</span>, [], <span class="ruby-value">-1</span>
   <span class="ruby-identifier">index</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span>, <span class="ruby-identifier">j</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>[<span class="ruby-identifier">j</span>] = [] } }
 
@@ -577,9 +589,14 @@
     <span class="ruby-identifier">pos</span> = <span class="ruby-value">-1</span>
 
     <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-constant">TOKEN_RE</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">token</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">index</span>[<span class="ruby-identifier">mangle_token</span>(<span class="ruby-identifier">token</span>)][<span class="ruby-identifier">doc_num</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pos</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">index</span>[<span class="ruby-identifier">term</span> = <span class="ruby-identifier">mangle_token</span>(<span class="ruby-identifier">token</span>)][<span class="ruby-identifier">doc_num</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pos</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">map</span>[<span class="ruby-identifier">doc_num</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">term</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">map</span>
     }
   }
+
+  <span class="ruby-constant">Nuggets</span><span class="ruby-operator">::</span><span class="ruby-constant">LSI</span>.<span class="ruby-identifier">each_norm</span>(<span class="ruby-identifier">map</span>, <span class="ruby-value">:min</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lsi</span>, <span class="ruby-value">:new</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">d</span>, <span class="ruby-identifier">k</span>, <span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">index</span>[<span class="ruby-identifier">mangle_token</span>(<span class="ruby-identifier">k</span>)][<span class="ruby-identifier">d</span>.<span class="ruby-identifier">key</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">nil</span>
+  } <span class="ruby-keyword">if</span> <span class="ruby-identifier">lsi</span>
 
   <span class="ruby-ivar">@index</span> = <span class="ruby-identifier">index</span>
 <span class="ruby-keyword">end</span></pre>
@@ -612,7 +629,7 @@
 
           
           <div class="method-source-code" id="get_documents-source">
-            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 98</span>
+            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 114</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_documents</span>
   <span class="ruby-identifier">input</span>.<span class="ruby-identifier">rewind</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">input</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:rewind</span>)
 
@@ -649,9 +666,9 @@
 
           
           <div class="method-source-code" id="mangle_token-source">
-            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 106</span>
+            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 122</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mangle_token</span>(<span class="ruby-identifier">token</span>)
-  <span class="ruby-identifier">token</span>.<span class="ruby-identifier">downcase</span>
+  <span class="ruby-constant">Unicode</span>.<span class="ruby-identifier">downcase</span>(<span class="ruby-identifier">token</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- mangle_token-source -->
           
