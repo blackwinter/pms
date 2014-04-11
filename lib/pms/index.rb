@@ -56,7 +56,7 @@ class PMS
 
           res
         else
-          raise TypeError, "expected String or Regexp, got #{token.class}"
+          raise TypeError, "String or Regexp expected, got #{token.class}"
       end.each { |_, positions| positions.compact! }
     end
 
