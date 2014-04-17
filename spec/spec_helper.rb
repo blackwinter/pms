@@ -8,3 +8,7 @@ unless Object.const_defined?(:BASE)
 
   FOX = File.join(BASE, 'spec', 'fox.txt')
 end
+
+RSpec.configure { |config|
+  config.expect_with(:rspec) { |c| c.syntax = [:should, :expect] }
+}
