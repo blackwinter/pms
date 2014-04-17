@@ -117,7 +117,7 @@ describe PMS, 'with LSI' do
 
   it 'should find more ducks' do
     @pms1.search('ducks').results.should == [1]
-    @pms2.search('ducks').results.should == [1, 4, 5]
+    @pms2.search('ducks').results.should == [1, 4, 6]
   end
 
   it 'should not report positions for LSI terms' do

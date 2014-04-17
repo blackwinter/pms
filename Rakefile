@@ -12,7 +12,7 @@ begin
       :email        => %q{jens.wille@gmail.com},
       :license      => %q{AGPL-3.0},
       :homepage     => :blackwinter,
-      :dependencies => %w[unicode] << ['ruby-nuggets', '>= 0.9.4']
+      :dependencies => %w[lsi4r unicode]
     }
   }}
 rescue LoadError => err

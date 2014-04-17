@@ -85,7 +85,7 @@ class PMS
 
     def build_index(options)
       if lsi = options[:lsi]
-        require 'nuggets/lsi'
+        require 'lsi4r'
 
         lsi = DEFAULT_LSI if lsi == true
         map = Hash.new { |h, k| h[k] = [] }
@@ -104,7 +104,7 @@ class PMS
         }
       }
 
-      Nuggets::LSI.each_norm(map, :min => lsi, :new => true) { |d, k, _|
+      Lsi4R.each_norm(map, :min => lsi, :new => true) { |d, k, _|
         index[mangle_token(k)][d.key] << nil
       } if lsi
 
