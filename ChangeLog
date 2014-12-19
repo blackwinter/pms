@@ -2,6 +2,11 @@
 
 = Revision history for pms
 
+== 0.0.7 [2014-12-19]
+
+* Requires at least Ruby 2.0.
+* Slightly refactored.
+
 == 0.0.6 [2013-12-19]
 
 * Added LSI support.
