@@ -3,7 +3,7 @@
 #                                                                             #
 # A component of pms, Poor Man's Search.                                      #
 #                                                                             #
-# Copyright (C) 2008-2013 Jens Wille                                          #
+# Copyright (C) 2008-2014 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@gmail.com>                                       #
@@ -51,6 +51,17 @@ class PMS
     alias_method :|, :or
     alias_method :-, :not
 
+    { and: :&, or: :|, not: :- }.each { |op, sym|
+      class_eval <<-EOT, __FILE__, __LINE__ + 1
+        def #{op}(token = nil, &block)
+          token ? apply_operator_with_token(#{op.inspect}, token) :
+                  apply_operator_with_block(#{op.inspect}, &block)
+        end
+      EOT
+
+      alias_method sym, op
+    }
+
     private
 
     def apply_operator_with_token(op, token)
@@ -78,9 +89,7 @@ class PMS
     end
 
     def clone_with_results(results)
-      clone = self.clone
-      clone.instance_variable_set(:@results, results)
-      clone
+      clone.tap { |clone| clone.instance_variable_set(:@results, results) }
     end
 
   end
@@ -92,10 +101,8 @@ class PMS
     def initialize(pms, token)
       super(pms)
 
-      @token = token
-
       @results_with_positions = index.results_with_positions(token)
-      @results = @results_with_positions.keys
+      @token, @results = token, @results_with_positions.keys
     end
 
     def near(token, distance = 1, order = false)
@@ -111,15 +118,12 @@ class PMS
         !results1[doc_num].any? { |pos1|
           positions.find { |pos2|
             diff = pos2 - pos1
-
-            break if order && diff < 0
-
-            diff.abs <= distance
+            order && diff < 0 ? break : diff.abs <= distance
           }
         }
       }
 
-      apply_operator('and', doc_nums)
+      apply_operator(:and, doc_nums)
     end
 
     alias_method :%, :near
@@ -134,10 +138,8 @@ class PMS
     private
 
     def clone_with_results(results)
-      clone = super
-      clone.instance_variable_set(:@results_with_positions,
-        @results_with_positions.dup.delete_if { |k, _| !results.include?(k) })
-      clone
+      super.tap { |clone| clone.instance_variable_set(:@results_with_positions,
+        @results_with_positions.dup.delete_if { |k, _| !results.include?(k) }) }
     end
 
   end

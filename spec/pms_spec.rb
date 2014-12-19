@@ -112,7 +112,7 @@ describe PMS, 'with LSI' do
 
   before :each do
     @pms1 = PMS.new(File.read(FOX))
-    @pms2 = PMS.new(File.read(FOX), :lsi => true)
+    @pms2 = PMS.new(File.read(FOX), lsi: true)
   end
 
   it 'should find more ducks' do

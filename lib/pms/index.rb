@@ -3,7 +3,7 @@
 #                                                                             #
 # A component of pms, Poor Man's Search.                                      #
 #                                                                             #
-# Copyright (C) 2008-2013 Jens Wille                                          #
+# Copyright (C) 2008-2014 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@gmail.com>                                       #
@@ -48,16 +48,12 @@ class PMS
         when String
           index[mangle_token(token)]
         when Regexp
-          res = {}
-
-          index.each { |key, value|
-            res.update(value) { |_, old, new| old | new } if key =~ token
+          index.each_with_object({}) { |(key, value), hash|
+            hash.update(value) { |_, old, new| old | new } if key =~ token
           }
-
-          res
         else
           raise TypeError, "String or Regexp expected, got #{token.class}"
-      end.each { |_, positions| positions.compact! }
+      end.each_value(&:compact!)
     end
 
     alias_method :results_with_positions, :doc_nums_with_positions
@@ -98,13 +94,13 @@ class PMS
         @entries << doc_num += 1
         pos = -1
 
-        doc.scan(TOKEN_RE) { |token|
+        each_token(doc) { |token|
           index[term = mangle_token(token)][doc_num] << pos += 1
           map[doc_num] << term if map
         }
       }
 
-      Lsi4R.each_norm(map, :min => lsi, :new => true) { |d, k, _|
+      Lsi4R.each_norm(map, min: lsi, new: true) { |d, k, _|
         index[mangle_token(k)][d.key] << nil
       } if lsi
 
@@ -117,6 +113,10 @@ class PMS
       docs = []
       input.each { |doc| docs << doc }
       docs
+    end
+
+    def each_token(doc, &block)
+      doc.scan(TOKEN_RE, &block)
     end
 
     def mangle_token(token)
