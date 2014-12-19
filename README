@@ -47,6 +47,7 @@ You can find more examples in the <tt>spec/</tt> directory.
 Documentation:: https://blackwinter.github.com/pms
 Source code::   https://github.com/blackwinter/pms
 RubyGem::       https://rubygems.org/gems/pms
+Travis CI::     https://travis-ci.org/blackwinter/pms
 
 
 == AUTHORS
@@ -56,7 +57,7 @@ RubyGem::       https://rubygems.org/gems/pms
 
 == LICENSE AND COPYRIGHT
 
-Copyright (C) 2008-2013 Jens Wille
+Copyright (C) 2008-2014 Jens Wille
 
 pms is free software: you can redistribute it and/or modify it under the
 terms of the GNU Affero General Public License as published by the Free
