@@ -1,9 +1,10 @@
-Thu, 19 Dec 2013 13:25:40 +0100
-README	Thu, 19 Dec 2013 13:24:25 +0100
+Fri, 19 Dec 2014 13:42:21 +0100
+README	Fri, 19 Dec 2014 13:39:51 +0100
 COPYING	Tue, 09 Apr 2013 11:33:21 +0200
-ChangeLog	Thu, 19 Dec 2013 13:25:00 +0100
+ChangeLog	Fri, 19 Dec 2014 13:41:20 +0100
 lib/pms.rb	Fri, 26 Apr 2013 12:38:32 +0200
 lib/pms/ext.rb	Tue, 09 Apr 2013 11:49:25 +0200
-lib/pms/index.rb	Fri, 26 Apr 2013 13:31:54 +0200
-lib/pms/proxy.rb	Fri, 26 Apr 2013 13:22:45 +0200
-lib/pms/version.rb	Thu, 19 Dec 2013 13:25:07 +0100
+lib/pms/i18n.rb	Fri, 19 Dec 2014 11:46:07 +0100
+lib/pms/index.rb	Fri, 19 Dec 2014 12:02:06 +0100
+lib/pms/proxy.rb	Fri, 19 Dec 2014 12:04:55 +0100
+lib/pms/version.rb	Fri, 19 Dec 2014 13:40:10 +0100

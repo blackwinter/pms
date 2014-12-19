@@ -2,76 +2,73 @@
 
 <html>
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta charset="UTF-8">
 
-<title>class PMS::Index - pms Application documentation (v0.0.6)</title>
-
-<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+<title>class PMS::Index - pms Application documentation (v0.0.7)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
 </script>
 
-<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
 
 
-<body id="top" class="class">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="../index.html">Home</a>
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
     <a href="../table_of_contents.html#classes">Classes</a>
     <a href="../table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+  </div>
+</div>
 
-
-  <nav id="search-section" class="section project-section" class="initially-hidden">
+    <div id="search-section" role="search" class="project-section initially-hidden">
   <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
              title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
   </form>
+</div>
 
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
-
+  </div>
 
   
-
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>lib/pms/index.rb
-  </ul>
-</nav>
-
-    
-  </div>
 
   <div id="class-metadata">
     
-    <nav id="parent-class-section" class="section">
-  <h3 class="section-header">Parent</h3>
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
   
   <p class="link">Object
   
-</nav>
+</div>
 
     
     
     <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
 
-  <ul class="link-list">
+  <ul class="link-list" role="directory">
     
     <li ><a href="#method-c-new">::new</a>
     
@@ -87,6 +84,8 @@
     
     <li ><a href="#method-i-documents">#documents</a>
     
+    <li ><a href="#method-i-each_token">#each_token</a>
+    
     <li ><a href="#method-i-get_documents">#get_documents</a>
     
     <li ><a href="#method-i-mangle_token">#mangle_token</a>
@@ -98,56 +97,19 @@
     <li ><a href="#method-i-results_with_positions">#results_with_positions</a>
     
   </ul>
-</nav>
-
-  </div>
-
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="../COPYING.html">COPYING</a>
-  
-    <li class="file"><a href="../ChangeLog.html">ChangeLog</a>
-  
-    <li class="file"><a href="../README.html">README</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="../File.html">File</a>
-  
-    <li><a href="../PMS.html">PMS</a>
-  
-    <li><a href="../PMS/Ext.html">PMS::Ext</a>
-  
-    <li><a href="../PMS/Index.html">PMS::Index</a>
-  
-    <li><a href="../PMS/Proxy.html">PMS::Proxy</a>
-  
-    <li><a href="../PMS/TokenProxy.html">PMS::TokenProxy</a>
-  
-    <li><a href="../PMS/Version.html">PMS::Version</a>
-  
-  </ul>
-</nav>
+</div>
 
   </div>
 </nav>
 
-<div id="documentation">
-  <h1 class="class">class PMS::Index</h1>
+<main role="main" aria-labelledby="class-PMS::Index">
+  <h1 id="class-PMS::Index" class="class">
+    class PMS::Index
+  </h1>
 
-  <div id="description" class="description">
+  <section class="description">
     
-  </div><!-- description -->
+  </section>
 
   
   
@@ -158,19 +120,20 @@
     
 
     
-    <!-- Constants -->
-    <section id="constants-list" class="section">
-      <h3 class="section-header">Constants</h3>
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
       <dl>
       
         <dt id="DEFAULT_LSI">DEFAULT_LSI
         
-        <dd class="description">
+        <dd>
         
       
         <dt id="TOKEN_RE">TOKEN_RE
         
-        <dd class="description">
+        <dd>
         
       
       </dl>
@@ -178,9 +141,10 @@
     
 
     
-    <!-- Attributes -->
-    <section id="attribute-method-details" class="method-section section">
-      <h3 class="section-header">Attributes</h3>
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
 
       
       <div id="attribute-i-entries" class="method-detail">
@@ -222,13 +186,14 @@
         </div>
       </div>
       
-    </section><!-- attribute-method-details -->
+    </section>
     
 
-    <!-- Methods -->
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
 
     
       <div id="method-c-new" class="method-detail ">
@@ -257,20 +222,22 @@
 
   <span class="ruby-identifier">build_index</span>(<span class="ruby-identifier">options</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- new-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- new-method -->
+      </div>
 
     
-    </section><!-- public-class-method-details -->
+    </section>
   
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
 
     
       <div id="method-i-5B-5D" class="method-detail method-alias">
@@ -298,7 +265,7 @@
           Alias for: <a href="Index.html#method-i-doc">doc</a>
         </div>
         
-      </div><!-- 5B-5D-method -->
+      </div>
 
     
       <div id="method-i-doc" class="method-detail ">
@@ -320,11 +287,11 @@
 
           
           <div class="method-source-code" id="doc-source">
-            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 78</span>
+            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 74</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">doc</span>(<span class="ruby-identifier">doc_num</span>)
   <span class="ruby-identifier">documents</span>([<span class="ruby-identifier">doc_num</span>]).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- doc-source -->
+          </div>
           
         </div>
 
@@ -335,7 +302,7 @@
         
 
         
-      </div><!-- doc-method -->
+      </div>
 
     
       <div id="method-i-doc_nums" class="method-detail ">
@@ -357,11 +324,11 @@
 
           
           <div class="method-source-code" id="doc_nums-source">
-            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 65</span>
+            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">doc_nums</span>(<span class="ruby-identifier">token</span>)
   <span class="ruby-identifier">doc_nums_with_positions</span>(<span class="ruby-identifier">token</span>).<span class="ruby-identifier">keys</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- doc_nums-source -->
+          </div>
           
         </div>
 
@@ -372,7 +339,7 @@
         
 
         
-      </div><!-- doc_nums-method -->
+      </div>
 
     
       <div id="method-i-doc_nums_with_positions" class="method-detail ">
@@ -400,18 +367,14 @@
     <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>
       <span class="ruby-identifier">index</span>[<span class="ruby-identifier">mangle_token</span>(<span class="ruby-identifier">token</span>)]
     <span class="ruby-keyword">when</span> <span class="ruby-constant">Regexp</span>
-      <span class="ruby-identifier">res</span> = {}
-
-      <span class="ruby-identifier">index</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
-        <span class="ruby-identifier">res</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">value</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">old</span>, <span class="ruby-identifier">new</span><span class="ruby-operator">|</span> <span class="ruby-identifier">old</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">new</span> } <span class="ruby-keyword">if</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">token</span>
+      <span class="ruby-identifier">index</span>.<span class="ruby-identifier">each_with_object</span>({}) { <span class="ruby-operator">|</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>), <span class="ruby-identifier">hash</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">value</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">old</span>, <span class="ruby-identifier">new</span><span class="ruby-operator">|</span> <span class="ruby-identifier">old</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">new</span> } <span class="ruby-keyword">if</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">token</span>
       }
-
-      <span class="ruby-identifier">res</span>
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;expected String or Regexp, got #{token.class}&quot;</span>
-  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">positions</span><span class="ruby-operator">|</span> <span class="ruby-identifier">positions</span>.<span class="ruby-identifier">compact!</span> }
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;String or Regexp expected, got #{token.class}&quot;</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">each_value</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:compact!</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- doc_nums_with_positions-source -->
+          </div>
           
         </div>
 
@@ -422,7 +385,7 @@
         
 
         
-      </div><!-- doc_nums_with_positions-method -->
+      </div>
 
     
       <div id="method-i-documents" class="method-detail ">
@@ -444,12 +407,12 @@
 
           
           <div class="method-source-code" id="documents-source">
-            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 71</span>
+            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">documents</span>(<span class="ruby-identifier">doc_nums</span> = <span class="ruby-identifier">default</span> = <span class="ruby-keyword">true</span>)
   <span class="ruby-ivar">@documents</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">get_documents</span>
   <span class="ruby-identifier">default</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@documents</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@documents</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">doc_nums</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- documents-source -->
+          </div>
           
         </div>
 
@@ -460,7 +423,7 @@
         
 
         
-      </div><!-- documents-method -->
+      </div>
 
     
       <div id="method-i-matches" class="method-detail method-alias">
@@ -488,7 +451,7 @@
           Alias for: <a href="Index.html#method-i-documents">documents</a>
         </div>
         
-      </div><!-- matches-method -->
+      </div>
 
     
       <div id="method-i-results" class="method-detail method-alias">
@@ -516,7 +479,7 @@
           Alias for: <a href="Index.html#method-i-doc_nums">doc_nums</a>
         </div>
         
-      </div><!-- results-method -->
+      </div>
 
     
       <div id="method-i-results_with_positions" class="method-detail method-alias">
@@ -544,13 +507,15 @@
           Alias for: <a href="Index.html#method-i-doc_nums_with_positions">doc_nums_with_positions</a>
         </div>
         
-      </div><!-- results_with_positions-method -->
+      </div>
 
     
-    </section><!-- public-instance-method-details -->
+    </section>
   
-     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Private Instance Methods</h3>
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
 
     
       <div id="method-i-build_index" class="method-detail ">
@@ -572,10 +537,10 @@
 
           
           <div class="method-source-code" id="build_index-source">
-            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 86</span>
+            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">build_index</span>(<span class="ruby-identifier">options</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">lsi</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:lsi</span>]
-    <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;nuggets/lsi&#39;</span>
+    <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;lsi4r&#39;</span>
 
     <span class="ruby-identifier">lsi</span> = <span class="ruby-constant">DEFAULT_LSI</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">lsi</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
     <span class="ruby-identifier">map</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = [] }
@@ -588,26 +553,59 @@
     <span class="ruby-ivar">@entries</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">doc_num</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
     <span class="ruby-identifier">pos</span> = <span class="ruby-value">-1</span>
 
-    <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-constant">TOKEN_RE</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">token</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">each_token</span>(<span class="ruby-identifier">doc</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">token</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">index</span>[<span class="ruby-identifier">term</span> = <span class="ruby-identifier">mangle_token</span>(<span class="ruby-identifier">token</span>)][<span class="ruby-identifier">doc_num</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pos</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
       <span class="ruby-identifier">map</span>[<span class="ruby-identifier">doc_num</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">term</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">map</span>
     }
   }
 
-  <span class="ruby-constant">Nuggets</span><span class="ruby-operator">::</span><span class="ruby-constant">LSI</span>.<span class="ruby-identifier">each_norm</span>(<span class="ruby-identifier">map</span>, <span class="ruby-value">:min</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lsi</span>, <span class="ruby-value">:new</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">d</span>, <span class="ruby-identifier">k</span>, <span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+  <span class="ruby-constant">Lsi4R</span>.<span class="ruby-identifier">each_norm</span>(<span class="ruby-identifier">map</span>, <span class="ruby-identifier">min</span><span class="ruby-operator">:</span> <span class="ruby-identifier">lsi</span>, <span class="ruby-identifier">new</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">d</span>, <span class="ruby-identifier">k</span>, <span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">index</span>[<span class="ruby-identifier">mangle_token</span>(<span class="ruby-identifier">k</span>)][<span class="ruby-identifier">d</span>.<span class="ruby-identifier">key</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">nil</span>
   } <span class="ruby-keyword">if</span> <span class="ruby-identifier">lsi</span>
 
   <span class="ruby-ivar">@index</span> = <span class="ruby-identifier">index</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- build_index-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- build_index-method -->
+      </div>
+
+    
+      <div id="method-i-each_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_token</span><span
+            class="method-args">(doc, &block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="each_token-source">
+            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">each_token</span>(<span class="ruby-identifier">doc</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-constant">TOKEN_RE</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
 
     
       <div id="method-i-get_documents" class="method-detail ">
@@ -629,7 +627,7 @@
 
           
           <div class="method-source-code" id="get_documents-source">
-            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 114</span>
+            <pre><span class="ruby-comment"># File lib/pms/index.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_documents</span>
   <span class="ruby-identifier">input</span>.<span class="ruby-identifier">rewind</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">input</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:rewind</span>)
 
@@ -637,14 +635,14 @@
   <span class="ruby-identifier">input</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">doc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">docs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">doc</span> }
   <span class="ruby-identifier">docs</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- get_documents-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- get_documents-method -->
+      </div>
 
     
       <div id="method-i-mangle_token" class="method-detail ">
@@ -670,26 +668,25 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mangle_token</span>(<span class="ruby-identifier">token</span>)
   <span class="ruby-constant">Unicode</span>.<span class="ruby-identifier">downcase</span>(<span class="ruby-identifier">token</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- mangle_token-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- mangle_token-method -->
+      </div>
 
     
-    </section><!-- private-instance-method-details -->
+    </section>
   
-  </section><!-- 5Buntitled-5D -->
+  </section>
+</main>
 
-</div><!-- documentation -->
 
-
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

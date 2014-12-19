@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>module PMS::Version - pms Application documentation (v0.0.7)</title>
+<title>module PMS::I18n - pms Application documentation (v0.0.7)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -63,9 +63,7 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-c-to_a">::to_a</a>
-    
-    <li ><a href="#method-c-to_s">::to_s</a>
+    <li class="calls-super" ><a href="#method-i-mangle_token">#mangle_token</a>
     
   </ul>
 </div>
@@ -73,9 +71,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="module-PMS::Version">
-  <h1 id="module-PMS::Version" class="module">
-    module PMS::Version
+<main role="main" aria-labelledby="module-PMS::I18n">
+  <h1 id="module-PMS::I18n" class="module">
+    module PMS::I18n
   </h1>
 
   <section class="description">
@@ -91,45 +89,21 @@
     
 
     
-    <section class="constants-list">
-      <header>
-        <h3>Constants</h3>
-      </header>
-      <dl>
-      
-        <dt id="MAJOR">MAJOR
-        
-        <dd>
-        
-      
-        <dt id="MINOR">MINOR
-        
-        <dd>
-        
-      
-        <dt id="TINY">TINY
-        
-        <dd>
-        
-      
-      </dl>
-    </section>
-    
 
     
 
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
-         <h3>Public Class Methods</h3>
+         <h3>Public Instance Methods</h3>
        </header>
 
     
-      <div id="method-c-to_a" class="method-detail ">
+      <div id="method-i-mangle_token" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">to_a</span><span
-            class="method-args">()</span>
+          <span class="method-name">mangle_token</span><span
+            class="method-args">(token)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -138,48 +112,20 @@
 
         <div class="method-description">
           
-          <p>Returns array representation.</p>
           
           
-
           
-          <div class="method-source-code" id="to_a-source">
-            <pre><span class="ruby-comment"># File lib/pms/version.rb, line 12</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_a</span>
-  [<span class="ruby-constant">MAJOR</span>, <span class="ruby-constant">MINOR</span>, <span class="ruby-constant">TINY</span>]
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-to_s" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">to_s</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Short-cut for version string.</p>
-          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
           
 
           
-          <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File lib/pms/version.rb, line 17</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
-  <span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;.&#39;</span>)
+          <div class="method-source-code" id="mangle_token-source">
+            <pre><span class="ruby-comment"># File lib/pms/i18n.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">mangle_token</span>(<span class="ruby-identifier">token</span>)
+  <span class="ruby-keyword">super</span>.<span class="ruby-identifier">tap</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:replace_diacritics!</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
