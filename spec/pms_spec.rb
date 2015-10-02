@@ -86,6 +86,10 @@ describe PMS do
     (@pms/'chilly' ^ 'night').results.sort.should == [0]
   end
 
+  it 'should support proximity operator ADJACENT with regular expressions' do
+    @pms.search(/ox$/).adjacent(/^we/).results.sort.should == [0]
+  end
+
   it 'should search case-insensitively' do
     @pms.search('said').results.sort.should == [1, 4]
     @pms.search('Said').results.sort.should == [1, 4]
