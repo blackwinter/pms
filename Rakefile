@@ -1,4 +1,4 @@
-require File.expand_path(%q{../lib/pms/version}, __FILE__)
+require_relative 'lib/pms/version'
 
 begin
   require 'hen'
